@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public int damage;
     public float speed;
+    public GameObject explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,16 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("hit");
             health.health -= damage;
-            
+            Explode();
             ScoreManager.instance.UpdateScore();
             Destroy(gameObject);
         }
     }
-    
+
+    private void Explode()
+    {
+        GameObject explosionObject = Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(explosionObject, 1f);
+    }
+
 }

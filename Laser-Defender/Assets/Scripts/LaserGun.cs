@@ -5,6 +5,8 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     public GameObject bullet;
+    public GameObject fireBullet;
+    public Player player;
     void Start()
     {
         
@@ -14,7 +16,10 @@ public class LaserGun : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-           Instantiate(bullet,transform.position,Quaternion.identity); 
+            if(player.isFire)
+                Instantiate(fireBullet, transform.position, Quaternion.identity);
+            else
+                Instantiate(bullet,transform.position,Quaternion.identity); 
         }
     }
 }
